@@ -58,7 +58,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
  */
 void mapping_adc(){
 	joystick_arr_[0][0] = map(joystick_arr[0], 0, 4095, 192, 1792)+errors[0];
-	joystick_arr_[0][1] = map(joystick_arr[1], 4095, 0, 192, 1792)+errors[1];
+	joystick_arr_[0][1] = map(joystick_arr[1], 4095, 0, 192, 1792)+errors[1]; //When joystick is pulled up-value is 0 and when pulled down-value is 4095, hence its reversed
 }
 
 /**
