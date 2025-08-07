@@ -13,6 +13,8 @@
  * https://community.st.com/t5/stm32cubeide-mcus/how-do-i-change-code-optimization/td-p/271208
  *
  * @todo Baremetal
+ *
+ * @todo Only 2 things: Roll and Pitch are covered for now, idk how to implement 3 axes (Roll, Pitch and Throttle) as HOTAS does, will read on it
  */
 #pragma GCC push_options
 #pragma GCC optimize ("Og")
