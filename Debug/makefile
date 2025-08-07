@@ -34,34 +34,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := jesman
+BUILD_ARTIFACT_NAME := jesman_rc
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-jesman.elf \
+jesman_rc.elf \
 
 MAP_FILES += \
-jesman.map \
+jesman_rc.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-jesman.list \
+jesman_rc.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: jesman.elf secondary-outputs
+main-build: jesman_rc.elf secondary-outputs
 
 # Tool invocations
-jesman.elf jesman.map: $(OBJS) $(USER_OBJS) C:\Users\HI\Desktop\jesman\STM32F411CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "jesman.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\HI\Desktop\jesman\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="jesman.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+jesman_rc.elf jesman_rc.map: $(OBJS) $(USER_OBJS) C:\Users\HI\Desktop\jesman_rc\STM32F411CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "jesman_rc.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\HI\Desktop\jesman_rc\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="jesman_rc.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -70,14 +70,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-jesman.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "jesman.list"
+jesman_rc.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "jesman_rc.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) default.size.stdout jesman.elf jesman.list jesman.map
+	-$(RM) default.size.stdout jesman_rc.elf jesman_rc.list jesman_rc.map
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

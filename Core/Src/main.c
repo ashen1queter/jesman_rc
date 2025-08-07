@@ -4,6 +4,19 @@
  * https://github.com/Reefwing-Software/Reefwing-SBUS
  */
 
+/**
+ * @todo Optimization techniques:
+ * https://stackoverflow.com/questions/1778538/how-many-gcc-optimization-levels-are-there
+ * https://www.disk91.com/2020/technology/programming/code-optimization-with-stm32-cube-ide/
+ * https://stackoverflow.com/questions/14492436/g-optimization-beyond-o3-ofast
+ * https://community.st.com/t5/stm32cubeide-mcus/how-do-i-change-code-optimization/td-p/271208
+ * https://community.st.com/t5/stm32cubeide-mcus/how-do-i-change-code-optimization/td-p/271208
+ *
+ * @todo Baremetal
+ */
+#pragma GCC push_options
+#pragma GCC optimize ("Og")
+
 #include "main.h"
 
 ADC_HandleTypeDef hadc1;
@@ -213,6 +226,9 @@ int main(void) {
         //snprintf(MSG, sizeof(MSG), "[X: %d, Y: %d]\r\n", joystick_arr_[0][0]+errors[0], joystick_arr_[0][1]+errors[1]);
         //snprintf(MSG2, sizeof(MSG2), "X2: %d, Y2: %d\r\n", joystick_arr_[1][0]+errorx2, joystick_arr_[1][1]+errory2);
 
+    	/**
+    	 * @todo Not sure but I think we need to trasmit after every 'x' us, will check on this
+    	 */
         HAL_UART_Transmit(&huart1, (uint8_t*)packet, sizeof(packet)/sizeof(packet[0]), 100);
         HAL_Delay(100);
         //HAL_UART_Transmit(&huart1, (uint8_t*)MSG2, strlen(MSG2), 100);
@@ -459,3 +475,5 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
+
+#pragma GCC pop_options
