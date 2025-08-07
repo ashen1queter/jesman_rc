@@ -73,6 +73,8 @@ void Error_Handler(void);
 #define DOI0_GPIO_Port GPIOB
 #define F_M_down_Pin GPIO_PIN_14
 #define F_M_down_GPIO_Port GPIOB
+#define JOYSTICK_INST_1 0
+#define JOYSTICK_INST_2 1
 
 /* USER CODE BEGIN Private defines */
 

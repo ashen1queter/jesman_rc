@@ -23,6 +23,7 @@
 /* USER CODE BEGIN Includes */
 #include "joystick.h"
 #include "joystick_cfg.h"
+#include "calib_button.h"
 
 /* USER CODE END Includes */
 
@@ -40,8 +41,6 @@ uint16_t JoyStick2_XY[2] = {0};
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#define JOYSTICK_INST_1 0
-#define JOYSTICK_INST_2 1
 
 /* USER CODE END PM */
 
@@ -52,7 +51,7 @@ DMA_HandleTypeDef hdma_adc1;
 
 SPI_HandleTypeDef hspi1;
 
-UART_HandleTypeDef huart1;
+//UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 
@@ -119,6 +118,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+	  calib_button_state();
 	  JoyStick_Read(JOYSTICK_INST_1, JoyStick1_XY[2]);
 	  JoyStick_Read(JOYSTICK_INST_2, JoyStick2_XY[2]);
 
